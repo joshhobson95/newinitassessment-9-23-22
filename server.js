@@ -49,23 +49,34 @@ try {
 
 
 
+//This would be the same thing but youd be using middleware to route
+//you only need to use one method in a project
 
 
+//using middleware
+// app.use(express.static(path.join(__dirname, '/public')))
+// app.use('/js', express.static(path.join(__dirname, '/public/index.html')))
+// app.use('/styles', express.static(path.join(__dirname, '/public/index.css')))
+//if you did it this way you would have to change the endpoints in the HTML file
+//like this <script src='./index.js'></script>
+//the lab wasnt set up for use this middleware
 
-app.use('/', express.static(path.join(__dirname, 'public/index.html')))
 
-app.use(express.static(path.join(__dirname, 'public')))
-
-
+//these app.gets were what you needed
+//this gets the html file when the page loads
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'))
 })
 
-
+//we are joining where we are in the server structure (dirname) and the html folder
 
 app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.js'))
+  })
+  
+app.get('/styles', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.css'))
   })
   
 
